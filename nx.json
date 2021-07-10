@@ -31,24 +31,27 @@
   },
   "projects": {
     "course-admin": {
-      "tags": []
+      "tags": ["scope:course-admin", "type:app"]
     },
     "course-admin-e2e": {
-      "tags": [],
+      "tags": ["type:e2e"],
       "implicitDependencies": ["course-admin"]
     },
     "course-client": {
-      "tags": []
+      "tags": ["scope:course-client", "type:app"]
     },
     "course-client-e2e": {
-      "tags": [],
+      "tags": ["type:e2e"],
       "implicitDependencies": ["course-client"]
     },
     "course-client-lib": {
-      "tags": []
+      "tags": ["scope:course-client-lib", "type:data-access"]
     },
     "course-service": {
-      "tags": []
+      "tags": ["scope:course-service", "type:service"]
+    },
+    "shared-interfaces": {
+      "tags": ["scope:shared", "type:interface"]
     }
   }
 }

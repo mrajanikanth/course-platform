@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CourseComponent } from './course/course.component';
+import { CourseComponent } from './course.component';
+import { CourseRoutingModule } from './course.routing';
+import { SectionComponent } from './section/section.component';
 
 
 
 @NgModule({
-  declarations: [
-    CourseComponent
-  ],
+  declarations: [CourseComponent, SectionComponent],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    CourseRoutingModule
+  ],
 })
 export class CourseModule { }

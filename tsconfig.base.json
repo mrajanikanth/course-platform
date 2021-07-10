@@ -17,7 +17,10 @@
     "paths": {
       "@course-platform/course-client-lib": [
         "libs/course-client-lib/src/index.ts"
-      ]
+      ],
+      "@course-platform/shared/interfaces": [
+        "libs/shared/interfaces/src/index.ts"
+      ],
     }
   },
   "exclude": ["node_modules", "tmp"]

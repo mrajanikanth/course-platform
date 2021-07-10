@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/libs/course-client-lib',
     '<rootDir>/apps/course-admin',
     '<rootDir>/apps/course-service',
+    '<rootDir>/libs/shared/interfaces',
   ],
 };
