@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CourseListComponent } from './course-list.component';
+import { SectionComponent } from './section.component';
 
 
 
 @NgModule({
   declarations: [
-    CourseListComponent
+    SectionComponent
   ],
   imports: [
     CommonModule
   ]
 })
-export class CourseListModule { }
+export class SectionModule { }

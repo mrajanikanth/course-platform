@@ -1,6 +1,125 @@
 {
   "version": 1,
   "projects": {
+    "course-admin": {
+      "projectType": "application",
+      "root": "apps/course-admin",
+      "sourceRoot": "apps/course-admin/src",
+      "prefix": "course-platform",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/course-admin",
+            "index": "apps/course-admin/src/index.html",
+            "main": "apps/course-admin/src/main.ts",
+            "polyfills": "apps/course-admin/src/polyfills.ts",
+            "tsConfig": "apps/course-admin/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/course-admin/src/favicon.ico",
+              "apps/course-admin/src/assets"
+            ],
+            "styles": ["apps/course-admin/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/course-admin/src/environments/environment.ts",
+                  "with": "apps/course-admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "course-admin:build:production"
+            },
+            "development": {
+              "browserTarget": "course-admin:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "course-admin:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/course-admin/src/**/*.ts",
+              "apps/course-admin/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/course-admin"],
+          "options": {
+            "jestConfig": "apps/course-admin/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "course-admin-e2e": {
+      "root": "apps/course-admin-e2e",
+      "sourceRoot": "apps/course-admin-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/course-admin-e2e/cypress.json",
+            "tsConfig": "apps/course-admin-e2e/tsconfig.e2e.json",
+            "devServerTarget": "course-admin:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "course-admin:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/course-admin-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
     "course-client": {
       "projectType": "application",
       "root": "apps/course-client",
@@ -116,6 +235,81 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/course-client-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "course-client-lib": {
+      "projectType": "library",
+      "root": "libs/course-client-lib",
+      "sourceRoot": "libs/course-client-lib/src",
+      "prefix": "course-platform",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/course-client-lib"],
+          "options": {
+            "jestConfig": "libs/course-client-lib/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/course-client-lib/src/**/*.ts",
+              "libs/course-client-lib/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "course-service": {
+      "root": "apps/course-service",
+      "sourceRoot": "apps/course-service/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/course-service",
+            "main": "apps/course-service/src/main.ts",
+            "tsConfig": "apps/course-service/tsconfig.app.json",
+            "assets": ["apps/course-service/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/course-service/src/environments/environment.ts",
+                  "with": "apps/course-service/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "course-service:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/course-service/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/course-service"],
+          "options": {
+            "jestConfig": "apps/course-service/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
