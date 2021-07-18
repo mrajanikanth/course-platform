@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'course-platform-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+	selector: 'course-platform-profile',
+	templateUrl: './profile.component.html',
+	styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+	constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+	ngOnInit(): void {}
 }
