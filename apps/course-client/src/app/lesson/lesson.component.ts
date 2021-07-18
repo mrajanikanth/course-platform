@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-	selector: 'course-platform-lesson',
+	selector: 'app-platform-lesson',
 	templateUrl: './lesson.component.html',
 })
-export class LessonComponent implements OnInit {
-	constructor() {}
-
-	ngOnInit(): void {}
+export class LessonComponent {
 }
