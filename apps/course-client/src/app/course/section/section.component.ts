@@ -4,7 +4,7 @@ import { CourseSection } from '@course-platform/shared/interfaces';
 @Component({
 	selector: 'app-section',
 	templateUrl: './section.component.html',
-	styleUrls: ['./section.component.scss'],
+	styleUrls: [],
 })
 export class SectionComponent implements OnInit {
 	@Input() section: CourseSection;
