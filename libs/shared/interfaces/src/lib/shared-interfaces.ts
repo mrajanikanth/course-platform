@@ -1,3 +1,3 @@
 export function sharedInterfaces(): string {
-  return 'shared-interfaces';
+	return 'shared-interfaces';
 }
